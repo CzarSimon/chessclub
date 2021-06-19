@@ -33,9 +33,10 @@ CREATE TABLE `ply` (
 );
 CREATE TABLE `comment` (
     `id` VARCHAR(50) NOT NULL,
-    `text` INTEGER NOT NULL,
+    `text` TEXT NOT NULL,
+    `public` BOOLEAN NOT NULL,
     `ply_id` VARCHAR(10) NOT NULL,
-    `user_id` VARCHAR(50) NOT NULL,
+    `author_id` VARCHAR(50) NOT NULL,
     `created_at` DATETIME NOT NULL,
     `updated_at` DATETIME NOT NULL,
     PRIMARY KEY (`id`),
