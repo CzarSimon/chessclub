@@ -37,7 +37,7 @@ CREATE TABLE `ply` (
     PRIMARY KEY (`id`),
     UNIQUE(`turn`, `player_id`),
     FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
-    FOREIGN KEY (`player_id`) REFERENCES `player` (`id`),
+    FOREIGN KEY (`player_id`) REFERENCES `player` (`id`)
 );
 CREATE TABLE `comment` (
     `id` VARCHAR(50) NOT NULL,
