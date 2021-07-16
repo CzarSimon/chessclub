@@ -13,6 +13,7 @@ type Ply struct {
 	GameID    string
 	PlayerID  string
 	CreatedAt time.Time
+	Comments  []Comment
 }
 
 func (p Ply) String() string {
@@ -20,4 +21,12 @@ func (p Ply) String() string {
 		"Ply(id=%s, turn=%d, move=%s, gameId=%s, playerID=%s, createdAt=%v)",
 		p.ID, p.Turn, p.Move, p.GameID, p.PlayerID, p.CreatedAt,
 	)
+}
+
+func (p Ply) GetComments() []Comment {
+	if p.Comments == nil {
+		return []Comment{}
+	}
+
+	return p.Comments
 }

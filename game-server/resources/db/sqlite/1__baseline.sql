@@ -1,9 +1,17 @@
 -- +migrate Up
+CREATE TABLE `game_result` (
+    `id` VARCHAR(10) NOT NULL,
+    `description` VARCHAR(50),
+    PRIMARY KEY (`id`)
+);
 CREATE TABLE `game` (
     `id` VARCHAR(50) NOT NULL,
+    `site` VARCHAR(100),
+    `result` VARCHAR(100),
     `created_at` DATETIME NOT NULL,
     `updated_at` DATETIME NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`result`) REFERENCES `game_result` (`id`)
 );
 CREATE TABLE `color` (
     `name` VARCHAR(5) NOT NULL,
@@ -43,10 +51,17 @@ CREATE TABLE `comment` (
     FOREIGN KEY (`ply_id`) REFERENCES `ply` (`id`)
 );
 INSERT INTO `color`(`name`)
-VALUES ('WHITE', 'BLACK');
+VALUES ('WHITE'),
+    ('BLACK');
+INSERT INTO `game_result`(`id`, `description`)
+VALUES ('1-0', 'White won'),
+    ('0-1', 'Black won'),
+    ('1/2-1/2', 'Draw'),
+    ('-', 'Game ongoing');
 -- +migrate Down
 DROP TABLE IF EXISTS `comment`;
 DROP TABLE IF EXISTS `ply`;
 DROP TABLE IF EXISTS `player`;
 DROP TABLE IF EXISTS `color`;
 DROP TABLE IF EXISTS `game`;
+DROP TABLE IF EXISTS `game_result`;
